@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.michaelelin</groupId>
   <artifactId>HoloBan</artifactId>
-  <version>0.1</version>
+  <version>0.2</version>
   <name>HoloBan</name>
   <url>https://github.com/Dumbo52/HoloBan</url>
   <description>Prevents the armor stand hologram exploit.</description>
@@ -38,19 +38,19 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.10.2-R0.1-SNAPSHOT</version>
+      <version>1.11-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>1.10.2-R0.1-SNAPSHOT</version>
+      <version>1.11-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>craftbukkit</artifactId>
-      <version>1.10.2-R0.1-SNAPSHOT</version>
+      <version>1.11-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

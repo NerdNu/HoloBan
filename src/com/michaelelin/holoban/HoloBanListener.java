@@ -1,8 +1,8 @@
 package com.michaelelin.holoban;
 
-import net.minecraft.server.v1_10_R1.NBTTagCompound;
+import net.minecraft.server.v1_11_R1.NBTTagCompound;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -43,7 +43,7 @@ public class HoloBanListener implements Listener {
 
     private boolean isInvalid(ItemStack stack) {
         if (stack != null && stack.getType() == Material.ARMOR_STAND) {
-            net.minecraft.server.v1_10_R1.ItemStack handle = CraftItemStack.asNMSCopy(stack);
+            net.minecraft.server.v1_11_R1.ItemStack handle = CraftItemStack.asNMSCopy(stack);
             if (handle != null) {
                 NBTTagCompound tag = handle.getTag();
                 if (tag != null && tag.hasKey("EntityTag")) {
