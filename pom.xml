@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.michaelelin</groupId>
   <artifactId>HoloBan</artifactId>
-  <version>0.2</version>
+  <version>0.3</version>
   <name>HoloBan</name>
   <url>https://github.com/Dumbo52/HoloBan</url>
   <description>Prevents the armor stand hologram exploit.</description>
@@ -14,6 +14,7 @@
         <directory>${basedir}</directory>
         <includes>
           <include>plugin.yml</include>
+          <include>config.yml</include>
         </includes>
       </resource>
     </resources>
