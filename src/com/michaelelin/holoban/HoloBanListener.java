@@ -19,7 +19,7 @@ public class HoloBanListener implements Listener {
     public void onInventoryCreative(InventoryCreativeEvent e) {
         ItemStack stack = e.getCursor();
         if (plugin.isInvalid(stack)) {
-            plugin.getLogger().info("Blocked player from spawning " + stack.getType() + " with extra data: "
+            plugin.notify("Blocked player from spawning " + stack.getType() + " with extra data: "
                     + e.getWhoClicked().getName()
                     + " (" + e.getWhoClicked().getUniqueId() + ")");
             e.setCancelled(true);
@@ -30,7 +30,7 @@ public class HoloBanListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent e) {
         ItemStack stack = e.getItem();
         if (plugin.isInvalid(stack)) {
-            plugin.getLogger().info("Blocked player from using " + stack.getType() + " with extra data: "
+            plugin.notify("Blocked player from using " + stack.getType() + " with extra data: "
                     + e.getPlayer().getName()
                     + " (" + e.getPlayer().getUniqueId() + ")");
             e.getPlayer().getInventory().remove(stack);

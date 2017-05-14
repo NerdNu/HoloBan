@@ -1,11 +1,13 @@
 package com.michaelelin.holoban;
 
 import net.minecraft.server.v1_11_R1.NBTTagCompound;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftItemStack;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -72,6 +74,16 @@ public class HoloBan extends JavaPlugin {
             }
         }
         return false;
+    }
+
+    public void notify(String message) {
+        getLogger().info(message);
+        String coloredMessage = ChatColor.LIGHT_PURPLE + message;
+        for (Player player : getServer().getOnlinePlayers()) {
+            if (player.hasPermission("holoban.notify")) {
+                player.sendMessage(coloredMessage);
+            }
+        }
     }
 
 }
