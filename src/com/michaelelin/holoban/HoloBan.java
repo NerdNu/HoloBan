@@ -1,12 +1,12 @@
 package com.michaelelin.holoban;
 
-import net.minecraft.server.v1_11_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,7 +60,7 @@ public class HoloBan extends JavaPlugin {
         if (stack != null) {
             List<String> tags = blockedMaterials.get(stack.getType());
             if (tags != null) {
-                net.minecraft.server.v1_11_R1.ItemStack handle = CraftItemStack.asNMSCopy(stack);
+                net.minecraft.server.v1_12_R1.ItemStack handle = CraftItemStack.asNMSCopy(stack);
                 if (handle != null) {
                     NBTTagCompound tag = handle.getTag();
                     if (tag != null) {
