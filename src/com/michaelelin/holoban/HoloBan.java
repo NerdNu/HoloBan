@@ -7,17 +7,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class HoloBan extends JavaPlugin {
 
-    private Map<Material, List<String>> blockedMaterials;
+    private Collection<ItemCheck> checks;
 
     @Override
     public void onEnable() {
@@ -28,15 +31,17 @@ public class HoloBan extends JavaPlugin {
 
     public void reloadConfiguration() {
         reloadConfig();
-        blockedMaterials = new HashMap<Material, List<String>>();
-        ConfigurationSection blockedItems = getConfig().getConfigurationSection("blocked_items");
+        checks = new ArrayList<>();
+        ConfigurationSection baseConfig = getConfig();
+        ConfigurationSection blockedItems = baseConfig.getConfigurationSection("blocked_items");
         if (blockedItems != null) {
+            TagCheck tagCheck = new TagCheck();
             for (String mat : blockedItems.getKeys(false)) {
                 try {
                     Material material = Material.valueOf(mat.toUpperCase());
                     List<String> tags = blockedItems.getStringList(mat);
                     if (tags != null) {
-                        blockedMaterials.put(material, tags);
+                        tagCheck.addBannedTags(material, tags);
                     } else {
                         getLogger().warning("Invalid tag list for " + mat);
                     }
@@ -44,6 +49,10 @@ public class HoloBan extends JavaPlugin {
                     getLogger().warning("Invalid material type: " + mat);
                 }
             }
+            checks.add(tagCheck);
+        }
+        if (baseConfig.getBoolean("block_illegal_enchants", true)) {
+            checks.add(new EnchantmentCheck());
         }
     }
 
@@ -56,21 +65,10 @@ public class HoloBan extends JavaPlugin {
         return true;
     }
 
-    public boolean isInvalid(ItemStack stack) {
-        if (stack != null) {
-            List<String> tags = blockedMaterials.get(stack.getType());
-            if (tags != null) {
-                net.minecraft.server.v1_12_R1.ItemStack handle = CraftItemStack.asNMSCopy(stack);
-                if (handle != null) {
-                    NBTTagCompound tag = handle.getTag();
-                    if (tag != null) {
-                        for (String bannedTag : tags) {
-                            if (tag.hasKey(bannedTag)) {
-                                return true;
-                            }
-                        }
-                    }
-                }
+    public boolean isInvalid(ItemStack item) {
+        for (ItemCheck check : checks) {
+            if (!check.checkValid(item)) {
+                return true;
             }
         }
         return false;
