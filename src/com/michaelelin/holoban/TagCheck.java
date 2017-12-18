@@ -26,9 +26,11 @@ public class TagCheck implements ItemCheck {
 
     private boolean hasBannedTag(ItemStack item, List<String> tagsToCheck) {
         NBTTagCompound baseTag = getTag(item);
-        for (String tagToCheck : tagsToCheck) {
-            if (baseTag.hasKey(tagToCheck)) {
-                return true;
+        if (baseTag != null) {
+            for (String tagToCheck : tagsToCheck) {
+                if (baseTag.hasKey(tagToCheck)) {
+                    return true;
+                }
             }
         }
         return false;
