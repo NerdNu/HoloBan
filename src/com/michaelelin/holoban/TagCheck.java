@@ -1,8 +1,8 @@
 package com.michaelelin.holoban;
 
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_13_R2.NBTTagCompound;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_13_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class TagCheck implements ItemCheck {
     }
 
     private NBTTagCompound getTag(ItemStack item) {
-        net.minecraft.server.v1_12_R1.ItemStack handle = CraftItemStack.asNMSCopy(item);
+        net.minecraft.server.v1_13_R2.ItemStack handle = CraftItemStack.asNMSCopy(item);
         return handle.getTag();
     }
 
