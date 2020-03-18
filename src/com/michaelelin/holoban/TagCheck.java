@@ -1,17 +1,18 @@
 package com.michaelelin.holoban;
 
-import net.minecraft.server.v1_13_R2.NBTTagCompound;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_13_R2.inventory.CraftItemStack;
-import org.bukkit.inventory.ItemStack;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
+import org.bukkit.inventory.ItemStack;
+
+import net.minecraft.server.v1_14_R1.NBTTagCompound;
+
 public class TagCheck implements ItemCheck {
 
-    private Map<Material, List<String>> bannedTags = new HashMap<>();
+    private final Map<Material, List<String>> bannedTags = new HashMap<>();
 
     public void addBannedTags(Material mat, List<String> tags) {
         bannedTags.put(mat, tags);
@@ -37,7 +38,7 @@ public class TagCheck implements ItemCheck {
     }
 
     private NBTTagCompound getTag(ItemStack item) {
-        net.minecraft.server.v1_13_R2.ItemStack handle = CraftItemStack.asNMSCopy(item);
+        net.minecraft.server.v1_14_R1.ItemStack handle = CraftItemStack.asNMSCopy(item);
         return handle.getTag();
     }
 
