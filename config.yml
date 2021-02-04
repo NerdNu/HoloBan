@@ -1,4 +1,5 @@
 blocked_items:
   armor_stand: ["EntityTag"]
   map: ["Decorations"]
+#  item_frame: ["Invisible"]
 block_illegal_enchants: true
