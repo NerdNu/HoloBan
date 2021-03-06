@@ -66,6 +66,7 @@ public class HoloBan extends JavaPlugin {
         if (baseConfig.getBoolean("block_illegal_enchants", true)) {
             checks.add(new EnchantmentCheck());
         }
+        checks.add(new SkullMetaCheck());
     }
 
     @Override

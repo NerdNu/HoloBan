@@ -16,7 +16,7 @@ public class HoloBanListener implements Listener {
     private String formatBlockedMessage(HumanEntity player, String blockedAction, ItemStack stack) {
         StringBuilder message = new StringBuilder();
         message.append("HoloBan blocked ").append(player.getName());
-        message.append(" from ").append(blockedAction).append(" ").append(stack.getType()).append(" with banned NBT data at ");
+        message.append(" from ").append(blockedAction).append(" ").append(stack.getType()).append(" with banned properties at ");
 
         Location loc = player.getLocation();
         message.append(loc.getWorld().getName());
